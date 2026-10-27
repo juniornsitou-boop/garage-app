@@ -1,0 +1,15 @@
+{
+  "name": "garage-app",
+  "version": "1.0.0",
+  "description": "Gestion d'un garage mécanique (AutoFix) - examen de rattrapage Node.js",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest"
+  },
+  "author": "NSITOU MABIALA Junior",
+  "license": "ISC",
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
