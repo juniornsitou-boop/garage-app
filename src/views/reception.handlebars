@@ -1,0 +1,28 @@
+<h1>Réception d'un véhicule</h1>
+<p class="sous-titre">Ouvre un ordre de réparation et attribue un poste libre de la catégorie.</p>
+
+{{> alerteErreur}}
+
+{{#if ordre}}
+  <div class="alerte alerte-succes" role="status">
+    Véhicule <strong>{{ordre.immatriculation}}</strong> réceptionné : ordre <strong>{{ordre.id}}</strong>,
+    poste attribué <strong>{{ordre.posteId}}</strong> ({{ordre.categorie}}), ouvert le {{formatDate ordre.dateOuverture}}.
+  </div>
+{{/if}}
+
+<form class="carte" method="post" action="/reception">
+  <label for="immatriculation">Immatriculation</label>
+  <input id="immatriculation" name="immatriculation" value="{{valeurs.immatriculation}}" placeholder="ex. LT-482-AB" required>
+
+  <label for="categorie">Catégorie d'intervention</label>
+  <select id="categorie" name="categorie" required>
+    {{#each categories}}
+      <option value="{{this}}" {{#if (eq ../valeurs.categorie this)}}selected{{/if}}>{{this}}</option>
+    {{/each}}
+  </select>
+
+  <label for="description">Description de la panne</label>
+  <textarea id="description" name="description" required>{{valeurs.description}}</textarea>
+
+  <button type="submit">Réceptionner le véhicule</button>
+</form>

@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr><th>Désignation</th><th class="nombre">Prix unitaire</th><th class="nombre">Qté</th><th class="nombre">Montant</th></tr>
+  </thead>
+  <tbody>
+    {{#each ordre.pieces}}
+      <tr>
+        <td>{{designation}}</td>
+        <td class="nombre">{{formatMontant prixUnitaire}}</td>
+        <td class="nombre">{{quantite}}</td>
+        <td class="nombre">{{formatMontant (multiplier prixUnitaire quantite)}}</td>
+      </tr>
+    {{else}}
+      <tr><td colspan="4" class="doux">Aucune pièce sur cet ordre.</td></tr>
+    {{/each}}
+  </tbody>
+  <tfoot>
+    <tr><td colspan="3">Total pièces</td><td class="nombre">{{formatMontant ordre.montantPieces}}</td></tr>
+  </tfoot>
+</table>

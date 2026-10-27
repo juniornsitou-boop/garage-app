@@ -1,0 +1,27 @@
+<h1>Clôture d'un ordre</h1>
+<p class="sous-titre">Restitution du véhicule : calcule le montant dû et libère le poste.</p>
+
+{{> alerteErreur}}
+
+<form class="carte" method="post" action="/cloture">
+  <label for="immatriculation">Immatriculation</label>
+  <input id="immatriculation" name="immatriculation" value="{{valeurs.immatriculation}}" required>
+  <button type="submit">Clôturer et facturer</button>
+</form>
+
+{{#if ordre}}
+  <div class="carte">
+    <div class="alerte alerte-succes" role="status">
+      Ordre <strong>{{ordre.id}}</strong> clôturé, poste <strong>{{ordre.posteId}}</strong> libéré.
+    </div>
+    <dl class="recap" style="margin-bottom:16px">
+      <dt>Véhicule</dt><dd>{{ordre.immatriculation}} ({{ordre.categorie}})</dd>
+      <dt>Ouverture</dt><dd>{{formatDate ordre.dateOuverture}}</dd>
+      <dt>Clôture</dt><dd>{{formatDate ordre.dateCloture}}</dd>
+      <dt>Durée</dt><dd>{{formatDuree ordre.dureeMinutes}}</dd>
+      <dt>Main d'oeuvre</dt><dd>{{formatMontant ordre.montantMainOeuvre}}</dd>
+    </dl>
+    {{> tableauPieces}}
+    <p class="total" style="text-align:right;margin:16px 0 0">Total à payer : {{formatMontant ordre.montantTotal}}</p>
+  </div>
+{{/if}}

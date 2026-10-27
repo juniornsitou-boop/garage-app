@@ -1,0 +1,29 @@
+<h1>Tableau de bord</h1>
+<p class="sous-titre">{{etat.libres}} postes libres sur {{etat.total}} · {{etat.occupes}} véhicule(s) à l'atelier</p>
+
+<div class="grille">
+  {{#each etat.parCategorie}}
+    <div class="carte">
+      <div class="doux">{{categorie}}</div>
+      <div class="compteur">{{libres}} <span class="doux" style="font-size:16px">/ {{total}} libres</span></div>
+      <div class="jauge"><div style="width: {{pourcentage occupes total}}%"></div></div>
+      <div class="doux">{{occupes}} occupé(s) · {{formatMontant tarifHoraire}} / heure</div>
+    </div>
+  {{/each}}
+</div>
+
+<div class="carte">
+  <table>
+    <thead>
+      <tr><th>Catégorie</th><th class="nombre">Postes</th><th class="nombre">Libres</th><th class="nombre">Occupés</th></tr>
+    </thead>
+    <tbody>
+      {{#each etat.parCategorie}}
+        <tr><td>{{categorie}}</td><td class="nombre">{{total}}</td><td class="nombre">{{libres}}</td><td class="nombre">{{occupes}}</td></tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr><td>Total</td><td class="nombre">{{etat.total}}</td><td class="nombre">{{etat.libres}}</td><td class="nombre">{{etat.occupes}}</td></tr>
+    </tfoot>
+  </table>
+</div>

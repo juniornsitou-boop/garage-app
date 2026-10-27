@@ -1,0 +1,39 @@
+<h1>Ajout d'une pièce</h1>
+<p class="sous-titre">Ajoute une pièce détachée à l'ordre en cours d'un véhicule.</p>
+
+{{> alerteErreur}}
+
+<form class="carte" method="post" action="/pieces">
+  <label for="immatriculation">Immatriculation</label>
+  <input id="immatriculation" name="immatriculation" value="{{valeurs.immatriculation}}" required>
+
+  <div class="ligne">
+    <div>
+      <label for="designation">Désignation</label>
+      <input id="designation" name="designation" value="{{valeurs.designation}}" required>
+    </div>
+    <div>
+      <label for="prixUnitaire">Prix unitaire (F CFA)</label>
+      <input id="prixUnitaire" name="prixUnitaire" type="number" min="0" step="1" value="{{valeurs.prixUnitaire}}" required>
+    </div>
+    <div>
+      <label for="quantite">Quantité</label>
+      <input id="quantite" name="quantite" type="number" min="1" step="1" value="{{#if valeurs.quantite}}{{valeurs.quantite}}{{else}}1{{/if}}" required>
+    </div>
+  </div>
+
+  <button type="submit">Ajouter la pièce</button>
+</form>
+
+{{#if ordre}}
+  <div class="carte">
+    <div class="alerte alerte-succes" role="status">Pièce ajoutée à l'ordre <strong>{{ordre.id}}</strong>.</div>
+    <dl class="recap" style="margin-bottom:16px">
+      <dt>Véhicule</dt><dd>{{ordre.immatriculation}}</dd>
+      <dt>Poste</dt><dd>{{ordre.posteId}} ({{ordre.categorie}})</dd>
+      <dt>Panne</dt><dd>{{ordre.description}}</dd>
+      <dt>Ouvert le</dt><dd>{{formatDate ordre.dateOuverture}}</dd>
+    </dl>
+    {{> tableauPieces}}
+  </div>
+{{/if}}

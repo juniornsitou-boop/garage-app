@@ -1,0 +1,30 @@
+<h1>Postes de travail</h1>
+<p class="sous-titre">{{etat.libres}} libre(s) / {{etat.total}}{{#if etat.categorie}} en {{etat.categorie}}{{/if}}</p>
+
+{{> alerteErreur}}
+
+<p class="filtres">
+  Filtrer :
+  <a href="/postes" class="{{#unless etat.categorie}}actif{{/unless}}">Toutes</a>
+  {{#each categories}}
+    <a href="/postes?categorie={{this}}" class="{{#if (eq ../etat.categorie this)}}actif{{/if}}">{{this}}</a>
+  {{/each}}
+</p>
+
+<div class="carte">
+  <table>
+    <thead>
+      <tr><th>Poste</th><th>Catégorie</th><th>Statut</th><th>Véhicule</th></tr>
+    </thead>
+    <tbody>
+      {{#each etat.postes}}
+        <tr>
+          <td>{{id}}</td>
+          <td>{{categorie}}</td>
+          <td>{{badgeStatut statut}}</td>
+          <td>{{#if immatriculation}}{{immatriculation}}{{else}}<span class="doux">-</span>{{/if}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
