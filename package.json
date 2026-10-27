@@ -4,11 +4,23 @@
   "description": "Gestion d'un garage mécanique (AutoFix) - examen de rattrapage Node.js",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node src/app.js",
     "test": "jest"
   },
   "author": "NSITOU MABIALA Junior",
   "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3"
+  },
+  "devDependencies": {
+    "jest": "^30.0.5",
+    "supertest": "^7.1.4"
+  },
   "jest": {
     "testEnvironment": "node"
   }
